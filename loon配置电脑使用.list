@@ -1,0 +1,243 @@
+# 更新日期：2024-09-30
+
+# 解锁网易云灰色音乐，获取证书链接二选一即可：
+# https://raw.githubusercontent.com/nondanee/UnblockNeteaseMusic/master/ca.crt
+# https://cdn.jsdelivr.net/gh/nondanee/UnblockNeteaseMusic@master/ca.crt
+
+# 利用描述文件屏蔽IOS更新提醒：https://app.initnil.com/tvOS.mobileconfig
+
+# 以 “#” 开头的行为注释行
+
+#======================================#
+[General]
+# 资源解析器(以下二选一即可,去掉"#"启用)
+#resource-parser = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Sub-Store/sub-store-parser_for_loon.js
+resource-parser = https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/dist/sub-store-parser.loon.min.js
+# GeoIP数据库(以下二选一即可,去掉"#"启用)
+#geoip-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+geoip-url = https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/Country.mmdb
+# IPv6支持（默认开启，启用：true，关闭：false)
+ipv6 = false
+# 跳过代理
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,127.0.0.1,100.64.0.0/10,localhost,*.local,e.crashlynatics.com,www.baidu.com,yunbusiness.ccb.com,passenger.t3go.cn,passenger.t3go.cn
+# 旁路隧道
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+# 解决一些ip请求无法匹配域名类规则的问题。real-ip指定的域名将不返回fake ip响应，直接将dns请求发往目标dns服务器
+# Real-Ip
+real-ip = *.iCloud.com,*.apple.com,*.cmpassport.com,*.jegotrip.com.cn,*.icitymobile.mobi,id6.me,*.pingan.com.cn,*.cmbchina.com,msftconnecttest.com,msftncsi.com,*.msftconnecttest.com,*.msftncsi.com,*.srv.nintendo.net,*.stun.playstation.net,xbox.*.microsoft.com,*.xboxlive.com,*.battlenet.com.cn,*.battlenet.com,*.blzstatic.cn,*.battle.net
+# dns服务器
+dns-server = system,119.29.29.29,114.114.114.114,223.5.5.5,202.141.176.93,202.141.178.13,117.50.10.10,119.28.28.28,8.8.8.8
+# 允许 wifi 访问
+allow-udp-proxy = false
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+# 节点延迟测试，proxy-test-url指定的网址进行相应测试，以确认节点的可用性，以下选一个就行
+#proxy-test-url = http://cp.cloudflare.com/generate_204
+proxy-test-url = http://www.qualcomm.cn/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+#proxy-test-url = http://captive.apple.com/generate_204
+#proxy-test-url = http://www.google.com/generate_204
+# 测试超时
+test-timeout = 2
+# 接口模式
+interface-mode = auto
+
+
+
+#======================================#
+# 👇Host
+# 可以指定一下四种模式：
+# 1、指定域名使用对应的IP地址
+# 2、将域名指向另一个域名
+# 3、指定域名请求DNS时使用特定的DNS服务器，格式为：google.com = server:8.8.8.8 或者 *.baidu.com = server:https://example.com/dns-query
+# 4、指定具体的SSID环境下使用特定的DNS服务器
+[Host]
+
+
+
+#======================================#
+# 👇本地节点
+[Proxy]
+主力_03 - 美国 GPT Tik NF = Shadowsocks,03.kill704.win,44223,chacha20-ietf-poly1305,"9253031b-921d-40ca-af47-4d0bf3226866",fast-open=false,udp=true
+
+
+
+#======================================#
+# 👇远程节点
+[Remote Proxy]
+备用 = https://www.yfjc.xyz/api/v1/client/subscribe?token=8101a93474994fec3a9b113333d82b7b,udp=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=false
+主力 = https://y2.free704.uk/api/v1/client/subscribe?token=3222e10cb59fada413610e3fd35ff823,udp=true,fast-open=default,vmess-aead=true,skip-cert-verify=true,enabled=true
+
+
+#======================================#
+# 👇策略组
+[Proxy Group]
+所有节点 = select,备用,主力,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/chxm1023/Script_X/main/icon/Loon/Loon_1.png
+延迟最低 = url-test,备用,主力,url = http://cp.cloudflare.com/generate_204,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png
+直连模式 = select,DIRECT,手动选择,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+负载均衡 = load-balance,备用,主力,url = http://cp.cloudflare.com/generate_204,interval = 600,max-timeout = 3000,algorithm = pcc,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID.png
+手动选择 = select,主力_03 - 美国 GPT Tik NF,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Back.png
+拦截模式 = select,REJECT,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png
+Telegram = url-test,US美国,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+Google = select,延迟最低,HK香港,US美国,SG新加坡,JP日本,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+YouTube = select,延迟最低,US美国,SG新加坡,HK香港,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+Netflix = select,HK香港,TW台湾,US美国,SG新加坡,JP日本,KR韩国,TU土耳其,UK英国,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix_Letter.png
+Disney = select,TW台湾,HK香港,SG新加坡,US美国,JP日本,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney+.png
+Spotify = select,DIRECT,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+国内直连 = select,直连模式,url = http://www.qualcomm.cn/generate_204,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/taiwan(1).png
+杂项 = select,延迟最低,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_Update.png
+Zoom = select,DIRECT,url = http://cp.cloudflare.com/generate_204,img-url = z.square.fill
+TikTok = select,延迟最低,手动选择,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/chxm1023/Script_X/main/icon/TikTok_1.png
+Github = select,延迟最低,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
+Watsapp = select,US_Filter,HK_Filter,url = http://www.qualcomm.cn/generate_204,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/whatsapp(1).png
+Twitter = select,延迟最低,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+ChatGPT = select,延迟最低,US美国,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/chxm1023/Script_X/main/icon/ChatGPT/ChatGPT4.png
+Instagram = select,US_Filter,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Instagram.png
+Facebook = select,US_Filter,HK_Filter,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png
+微软服务 = select,直连模式,手动选择,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+苹果服务 = select,直连模式,手动选择,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+系统更新 = select,拦截模式,url = http://cp.cloudflare.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_Update.png
+HK香港 = url-test,HK_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+TW台湾 = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+US美国 = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+SG新加坡 = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+JP日本 = url-test,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+KR韩国 = url-test,KR_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+UK英国 = url-test,UK_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+RU俄罗斯 = url-test,RU_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Russia.png
+TU土耳其 = url-test,TU_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Turkey.png
+IN印度 = url-test,IN_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png
+DE德国 = url-test,DE_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png
+CA加拿大 = url-test,CA_Filter,url = http://cp.cloudflare.com/generate_204,interval = 600,tolerance = 100,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Canada.png
+
+
+#======================================#
+# 👇策略过滤筛选
+# 筛选节点，筛选后的结果可加入到策略组中，目前支持三种筛选方式
+# NodeSelect: 使用在UI上选择的节点。
+# NameKeyword: 根据提供的关键词对订阅中所有节点的名称进行筛选，使用筛选后的节点。
+# NameRegex: 根据提供的正则表达式对订阅中所有节点的名称进行筛选，使用筛选后的节点。
+# 全部_节点 = NameRegex, FilterKey = "|"
+# 全部节点(排除网易云音乐节点)
+[Remote Filter]
+全部_Filte = NameRegex, FilterKey = "|"
+HK_Filter = NameRegex, FilterKey = "(?i)(港|HK|Hong|湾仔|港仔|九龙)"
+TW_Filter = NameRegex, FilterKey = "(?i)(台|TW|Tai|台北|新竹|台中|桃园|台南|高雄|花莲)"
+US_Filter = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+SG_Filter = NameRegex, FilterKey = "(?i)(新加坡|SG|Singapore)"
+UK_Filter = NameRegex, FilterKey = "(?i)(英国|UK|伦敦)"
+RU_Filter = NameRegex, FilterKey = "(?i)(俄罗斯|RU|莫斯科|圣彼得堡|喀山|哈尔科夫|乌法|新西伯利亚|下诺夫哥罗德|沃罗涅什|Russia)"
+JP_Filter = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|名古屋|福冈|仙台|京都|Japan)"
+KR_Filter = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓|南韩|南朝鲜|釜山|South Korea)"
+TU_Filter = NameRegex, FilterKey = "(?i)(土耳其|TU|Turkey)"
+IN_Filter = NameRegex, FilterKey = "(?i)(印度|IN|IND|孟买|新德里|高知|Republic of India|India)"
+DE_Filter = NameRegex, FilterKey = "(?i)(德国|DEU|DE|柏林|慕尼黑|汉堡|科隆|Germany)"
+CA_Filter = NameRegex, FilterKey = "(?i)(加拿大|CA|渥太华)"
+
+
+#======================================#
+#👇规则分流
+[Rule]
+FINAL,延迟最低
+
+
+
+#======================================#
+# 👇远程分流规则
+[Remote Rule]
+https://raw.githubusercontent.com/Yang1guang/loon-/refs/heads/main/Apple.list, policy=苹果服务, tag=苹果服务, enabled=true
+https://raw.githubusercontent.com/Yang1guang/loon-/refs/heads/main/Zoom.list, policy=Zoom, tag=Zoom, enabled=true
+https://whatshub.top/rule/GitHub.list, policy=Github, tag=GitHub, enabled=true
+https://raw.githubusercontent.com/Yang1guang/-/refs/heads/main/zaxiang.list, policy=杂项, tag=杂项, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Spotify/Spotify.list, policy=Spotify, tag=Spotify, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Whatsapp/Whatsapp.list, policy=Watsapp, tag=WhatsApp, enabled=true
+https://github.com/fmz200/wool_scripts/raw/main/Loon/rule/rejectAd.list, policy=REJECT, tag=rejectAd.list, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/DouYin/DouYin.list, policy=国内直连, tag=抖音, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/TikTok/TikTok.list, policy=TikTok, tag=TikTok, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/YouTubeMusic/YouTubeMusic.list, policy=YouTube, tag=YouTube music, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/AppStore/AppStore.list, policy=直连模式, tag=App Store, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Google/Google.list, policy=Google, tag=Google, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/WeChat/WeChat.list, policy=国内直连, tag=微信, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Facebook/Facebook.list, policy=Facebook, tag=Facebook, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=Twitter, tag=twitter, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Netflix/Netflix.list, policy=Netflix, tag=Netflix, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Disney/Disney.list, policy=Disney, tag=Disney+, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/China/China.list, policy=国内直连, tag=china, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/YouTube/YouTube.list, policy=YouTube, tag=YouTube, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=Telegram, tag=Telegram, enabled=true
+
+
+
+
+#======================================#
+# 👇本地重写
+[Rewrite]
+# Google搜索引擎防跳转的重写
+^https?:\/\/(www.)?(g|google)\.cn 302 https://www.google.com
+
+
+
+#======================================#
+# 👇本地脚本
+# http-request 处理请求的脚本
+# http-response 处理请求响应的脚本
+# cron 定时脚本
+# network-changed   网络发生变化触发脚本
+# generic  通用型脚本，可用在操作节点/策略组中，执行是会带入节点名称和策略组名称，脚本必须在开启NE时
+[Script]
+cron "0 10 * * *" script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/backup.js, timeout=10, enabled=false, tag=Gist备份, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/box.png
+cron "5 10 * * *" script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/restore.js, timeout=10, enabled=false, tag=Gist恢复, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/box.png
+
+
+
+#======================================#
+# 👇远程脚本
+[Remote Script]
+https://raw.githubusercontent.com/chxm1023/Rewrite/Loon/hljk.plugin, tag=汇率监控, enabled=true
+https://raw.githubusercontent.com/chxm1023/Task/Loon/tieba.plugin, tag=百度贴吧签到, enabled=false
+https://raw.githubusercontent.com/chxm1023/Task/Loon/TestFlight.plugin, tag=自动加入TF, enabled=false
+https://raw.githubusercontent.com/chxm1023/Task/Loon/aliyun.plugin, tag=阿里云盘签到, enabled=false
+
+
+#======================================#
+# 👇插件资源
+[Plugin]
+https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/LoonGallery.plugin, enabled=true
+https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/modules/script-hub.loon.plugin, policy=DIRECT, enabled=true
+https://whatshub.top/plugin/WPS.plugin, enabled=true
+https://whatshub.top/plugin/nicegram.plugin, enabled=true
+https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/YouTube_remove_ads.plugin, enabled=true
+https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.plugin, enabled=true
+https://raw.githubusercontent.com/bai1zi/shadowrocket-surge-loon-qx/main/WeChat.sgmodule, tag=WeChat去广告, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png, enabled=true
+https://raw.githubusercontent.com/Tartarus2014/Loon-Script/master/Plugin/skip-proxy.plugin, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/V2tun.png, enabled=true
+https://raw.githubusercontent.com/Tartarus2014/Loon-Script/master/Plugin/TF-Download.plugin, enabled=true
+https://raw.githubusercontent.com/Tartarus2014/Loon-Script/master/Plugin/MediaCheck.plugin, enabled=true
+https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/config/Loon.plugin, policy=延迟最低, tag=高级订阅工具, enabled=true
+https://raw.githubusercontent.com/app2smile/rules/master/plugin/spotify.plugin, tag=spotify会员解锁, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png, enabled=true
+https://raw.githubusercontent.com/chengkongyiban/Loon/main/Loon-Gallery/UnblockURLinWeChat.plugin, tag=解除微信链接限制, enabled=true
+https://raw.githubusercontent.com/chxm1023/Rewrite/Loon/JD_Price.plugin, tag=历史价格, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PostBox_1.png, enabled=true
+https://raw.githubusercontent.com/chxm1023/Advertising/Loon/YouTube.plugin, tag=YouTube去广告, enabled=true
+https://raw.githubusercontent.com/chxm1023/Rewrite/Loon/skip-proxy.plugin, tag=跳过代理检测, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/Loon/Loon_TF_Account.plugin, tag=TestFlight账户管理脚本, enabled=true
+https://raw.githubusercontent.com/getsomecat/Loon/main/Net_Speed.plugin, tag=⚡ Net Speed, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bookpedia.png, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zheye/zheye.lnplugin, tag=知乎去广告, enabled=true
+https://raw.githubusercontent.com/app2smile/rules/master/plugin/bilibili.plugin, tag=哔哩哔哩去广告, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_4.png, enabled=true
+https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.loon.plugin, policy=延迟最低, tag=BoxJs, enabled=true
+
+
+
+
+#======================================#
+# 👇中间人攻击，证书，主机名
+[Mitm]
+ca-p12 = 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
+ca-passphrase = B7HSCUX8
+enable = true
+skip-server-cert-verify = true
+hostname = www.google.*
+
+#########################################
+# ca-passphrase和ca-p12代为证书&主机名部分，可去UI界面自行生成并安装证书，会在此生成对应信息，也可在更新配置前可把旧的配置中ca-passphrase和ca-p12代码拷贝下来, 导入新的配置文件把内容粘贴在对应位置就不用重装证书。
+ca-passphrase = 
+ca-p12 = 
